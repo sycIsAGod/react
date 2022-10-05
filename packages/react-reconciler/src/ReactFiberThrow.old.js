@@ -77,6 +77,7 @@ import {
   markDidThrowWhileHydratingDEV,
   queueHydrationError,
 } from './ReactFiberHydrationContext.old';
+import {DiscreteEventPriority} from './ReactEventPriorities.old';
 
 function createRootErrorUpdate(
   fiber: Fiber,
@@ -421,8 +422,9 @@ function throwException(
     } else {
       // No boundary was found. Unless this is a sync update, this is OK.
       // We can suspend and wait for more data to arrive.
-
-      if (!includesSyncLane(rootRenderLanes)) {
+      if (
+        !(includesSyncLane(rootRenderLanes) && root.updatePriority === DiscreteEventPriority)
+      ) {
         // This is not a sync update. Suspend. Since we're not activating a
         // Suspense boundary, this will unwind all the way to the root without
         // performing a second pass to render a fallback. (This is arguably how
@@ -434,6 +436,7 @@ function throwException(
         renderDidSuspendDelayIfPossible();
         return;
       }
+      console.log(rootRenderLanes, root.updatePriority);
 
       // This is a sync/discrete update. We treat this case like an error
       // because discrete renders are expected to produce a complete tree

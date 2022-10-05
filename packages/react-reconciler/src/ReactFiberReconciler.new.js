@@ -313,7 +313,9 @@ export function createHydrationContainer(
   // enqueue the callback if one is provided).
   const current = root.current;
   const eventTime = requestEventTime();
+  console.log( root.updatePriority);
   const lane = requestUpdateLane(current);
+  console.log('??', requestUpdateLane_getUpdatePriority(), root.updatePriority);
   // TODO what to do about isUnknownEventPriority here
   const update = createUpdate(eventTime, lane);
   update.callback =

@@ -1454,7 +1454,7 @@ describe('ReactDOMServerPartialHydration', () => {
     expect(container.textContent).toBe('Hello');
   });
 
-  it('blocks the update to hydrate first if context has changed', async () => {
+  it.only('blocks the update to hydrate first if context has changed', async () => {
     let suspend = false;
     let resolve;
     const promise = new Promise(resolvePromise => (resolve = resolvePromise));
@@ -1510,6 +1510,7 @@ describe('ReactDOMServerPartialHydration', () => {
     expect(ref.current).toBe(null);
     expect(span.textContent).toBe('Hello');
 
+    console.log('>>>>>> render update')
     // Render an update, which will be higher or the same priority as pinging the hydration.
     root.render(
       <Context.Provider value={{text: 'Hi', className: 'hi'}}>
@@ -1520,10 +1521,13 @@ describe('ReactDOMServerPartialHydration', () => {
     // At the same time, resolving the promise so that rendering can complete.
     suspend = false;
     resolve();
+    console.log('unsuspend');
     await promise;
 
     // This should first complete the hydration and then flush the update onto the hydrated state.
+    console.log('flush all');
     Scheduler.unstable_flushAll();
+    console.log('run all timers');
     jest.runAllTimers();
 
     // Since this should have been hydrated, this should still be the same span.
