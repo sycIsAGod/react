@@ -1,18 +1,26 @@
-import Header from './Header';
-import Fixtures from './fixtures';
+import React from 'react';
 import '../style.css';
 
-const React = window.React;
-
+const FnComponent=function(){
+  return <div>777</div>
+}
+class Name extends React.Component{
+  render(){
+    return (
+    <div>name</div>
+    )
+  }
+}
 class App extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <Fixtures />
+       sss
+      <FnComponent/>
+      <Name></Name>
       </div>
     );
   }
 }
-
+console.log(new App().render());
 export default App;
