@@ -343,11 +343,11 @@ function getPlugins(
     // Compile to ES5.
     babel(getBabelConfig(updateBabelOptions, bundleType)),
     // Remove 'use strict' from individual source files.
-    {
-      transform(source) {
-        return source.replace(/['"]use strict['"']/g, '');
-      },
-    },
+    // {
+    //   transform(source) {
+    //     return source.replace(/['"]use strict['"']/g, '');
+    //   },
+    // },
     // Turn __DEV__ and process.env checks into constants.
     replace({
       __DEV__: isProduction ? 'false' : 'true',
@@ -358,36 +358,36 @@ function getPlugins(
     // We still need CommonJS for external deps like object-assign.
     commonjs(),
     // Apply dead code elimination and/or minification.
-    isProduction &&
-      closure(
-        Object.assign({}, closureOptions, {
-          // Don't let it create global variables in the browser.
-          // https://github.com/facebook/react/issues/10909
-          assume_function_wrapper: !isUMDBundle,
-          // Works because `google-closure-compiler-js` is forked in Yarn lockfile.
-          // We can remove this if GCC merges my PR:
-          // https://github.com/google/closure-compiler/pull/2707
-          // and then the compiled version is released via `google-closure-compiler-js`.
-          renaming: !shouldStayReadable,
-        })
-      ),
+    // isProduction &&
+    //   closure(
+    //     Object.assign({}, closureOptions, {
+    //       // Don't let it create global variables in the browser.
+    //       // https://github.com/facebook/react/issues/10909
+    //       assume_function_wrapper: !isUMDBundle,
+    //       // Works because `google-closure-compiler-js` is forked in Yarn lockfile.
+    //       // We can remove this if GCC merges my PR:
+    //       // https://github.com/google/closure-compiler/pull/2707
+    //       // and then the compiled version is released via `google-closure-compiler-js`.
+    //       renaming: !shouldStayReadable,
+    //     })
+    //   ),
     // HACK to work around the fact that Rollup isn't removing unused, pure-module imports.
     // Note that this plugin must be called after closure applies DCE.
-    isProduction && stripUnusedImports(pureExternalModules),
-    // Add the whitespace back if necessary.
-    shouldStayReadable && prettier({parser: 'babylon'}),
-    // License and haste headers, top-level `if` blocks.
-    {
-      transformBundle(source) {
-        return Wrappers.wrapBundle(
-          source,
-          bundleType,
-          globalName,
-          filename,
-          moduleType
-        );
-      },
-    },
+    // isProduction && stripUnusedImports(pureExternalModules),
+    // // Add the whitespace back if necessary.
+    // shouldStayReadable && prettier({parser: 'babylon'}),
+    // // License and haste headers, top-level `if` blocks.
+    // {
+    //   transformBundle(source) {
+    //     return Wrappers.wrapBundle(
+    //       source,
+    //       bundleType,
+    //       globalName,
+    //       filename,
+    //       moduleType
+    //     );
+    //   },
+    // },
     // Record bundle size.
     sizes({
       getSize: (size, gzip) => {
