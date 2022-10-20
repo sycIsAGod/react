@@ -14,13 +14,12 @@
     "jest-diff": "^25.1.0",
     "prop-types": "^15.6.0",
     "query-string": "^4.2.3",
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "link:../../build/node_modules/react",
+    "react-dom": "link:../../build/node_modules/react-dom",
     "semver": "^5.5.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "prestart": "cp ../../build/node_modules/scheduler/umd/scheduler-unstable_mock.development.js ../../build/node_modules/scheduler/umd/scheduler-unstable_mock.production.min.js ../../build/node_modules/react/umd/react.development.js ../../build/node_modules/react-dom/umd/react-dom.development.js ../../build/node_modules/react/umd/react.production.min.js ../../build/node_modules/react-dom/umd/react-dom.production.min.js ../../build/node_modules/react-dom/umd/react-dom-server.browser.development.js ../../build/node_modules/react-dom/umd/react-dom-server.browser.production.min.js ../../build/node_modules/react-dom/umd/react-dom-test-utils.development.js ../../build/node_modules/react-dom/umd/react-dom-test-utils.production.min.js public/ && cp -a ../../build/node_modules/. node_modules",
+    "start": "set PORT=5002 && react-scripts start",
     "build": "react-scripts build && cp build/index.html build/200.html",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
