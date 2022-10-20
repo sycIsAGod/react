@@ -1,13 +1,7 @@
-import './polyfills';
-import loadReact from './react-loader';
-
-loadReact()
-  .then(() => import('./components/App'))
-  .then(App => {
-    const {React, ReactDOM} = window;
-
-    ReactDOM.render(
-      React.createElement(App.default),
-      document.getElementById('root')
-    );
-  });
+import React from '../node_modules/react'
+import ReactDom from '../node_modules/react-dom'
+import App from './components/App'
+ReactDom.render(
+  <App />,
+  document.getElementById('root')
+);
