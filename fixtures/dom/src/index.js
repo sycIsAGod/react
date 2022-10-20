@@ -17,7 +17,8 @@ import {createRoot} from 'react-dom/client'
 
 import  App from './components/App'
 const app=createRoot(document.getElementById('root'))
-
+const appel=<App></App>
+console.log(appel);
 // const le=<div>ssss</div>
 // console.log(le, new App().render());
 app.render(<App/>)
