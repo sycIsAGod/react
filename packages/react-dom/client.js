@@ -21,7 +21,7 @@ import {
   hydrateRoot as hydrateRootImpl,
   __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED as Internals,
 } from './';
-
+// 创建root
 export function createRoot(
   container: Element | Document | DocumentFragment,
   options?: CreateRootOptions,
@@ -30,6 +30,7 @@ export function createRoot(
     Internals.usingClientEntryPoint = true;
   }
   try {
+    // console.log(createRootImpl(container, options),'result');
     return createRootImpl(container, options);
   } finally {
     if (__DEV__) {

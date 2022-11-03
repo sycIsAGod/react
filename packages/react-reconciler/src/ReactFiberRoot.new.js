@@ -61,9 +61,9 @@ function FiberRootNode(
   this.context = null;
   this.pendingContext = null;
   this.callbackNode = null;
-  this.callbackPriority = NoLane;
-  this.eventTimes = createLaneMap(NoLanes);
-  this.expirationTimes = createLaneMap(NoTimestamp);
+  this.callbackPriority = NoLane;// 0b0000000000000000000000000000000
+  this.eventTimes = createLaneMap(NoLanes);  // NoLanes      0b0000000000000000000000000000000
+  this.expirationTimes = createLaneMap(NoTimestamp);//   NoTimestamp    -1
 
   this.pendingLanes = NoLanes;
   this.suspendedLanes = NoLanes;
@@ -145,7 +145,7 @@ export function createFiberRoot(
   transitionCallbacks: null | TransitionTracingCallbacks,
 ): FiberRoot {
   // $FlowFixMe[invalid-constructor] Flow no longer supports calling new on functions
-  const root: FiberRoot = (new FiberRootNode(
+  const root: FiberRoot = (new FiberRootNode(// 创建RootFiber
     containerInfo,
     tag,
     hydrate,

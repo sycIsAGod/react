@@ -31,6 +31,7 @@ export type ChildrenArray<+T> = $ReadOnlyArray<ChildrenArray<T>> | T;
 
 // Export all exports so that they're available in tests.
 // We can't use export * from in Flow for some reason.
+// console.log('syc');
 export {
   __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED,
   act as unstable_act,

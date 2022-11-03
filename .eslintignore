@@ -3,13 +3,13 @@
 
 # Not written by hand
 packages/react-art/npm/lib
-
+src/
 # Build products
 build/
 coverage/
 fixtures/
 scripts/bench/benchmarks/**/*.js
-
+webpack.config.js
 # React repository clone
 scripts/bench/remote-repo/
 

@@ -2,11 +2,12 @@
   "private": true,
   "workspaces": [
     "packages/*"
+
   ],
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/code-frame": "^7.10.4",
-    "@babel/core": "^7.19.6",
+    "@babel/core": "^7.11.1",
     "@babel/eslint-parser": "^7.11.4",
     "@babel/helper-module-imports": "^7.10.4",
     "@babel/parser": "^7.11.3",
@@ -33,8 +34,8 @@
     "@babel/plugin-transform-shorthand-properties": "^7.10.4",
     "@babel/plugin-transform-spread": "^7.11.0",
     "@babel/plugin-transform-template-literals": "^7.10.5",
-    "@babel/preset-flow": "^7.18.6",
-    "@babel/preset-react": "^7.18.6",
+    "@babel/preset-flow": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
     "@babel/traverse": "^7.11.0",
     "abort-controller": "^3.0.0",
     "art": "0.10.1",
@@ -94,8 +95,9 @@
     "targz": "^1.0.1",
     "through2": "^3.0.1",
     "tmp": "^0.1.0",
+    "typescript": "^3.7.5",
     "web-streams-polyfill": "^3.1.1",
-    "webpack": "^5.74.0",
+    "webpack": "^4.41.2",
     "yargs": "^15.3.1"
   },
   "devEngines": {
@@ -105,7 +107,6 @@
     "testRegex": "/scripts/jest/dont-run-jest-directly\\.js$"
   },
   "scripts": {
-    "start": "webpack-dev-server",
     "build": "node ./scripts/rollup/build.js",
     "build-combined": "node ./scripts/rollup/build-all-release-channels.js",
     "build-for-devtools": "cross-env RELEASE_CHANNEL=experimental yarn build react/index,react/jsx,react-dom/index,react-dom/unstable_testing,react-dom/test-utils,react-is,react-debug-tools,scheduler,react-test-renderer,react-refresh,react-art --type=NODE && cp -r ./build/node_modules build/oss-experimental/",
@@ -150,10 +151,5 @@
   },
   "resolutions": {
     "react-is": "npm:react-is"
-  },
-  "dependencies": {
-    "html-webpack-plugin": "^5.5.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
   }
 }

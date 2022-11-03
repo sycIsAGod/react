@@ -64,7 +64,13 @@ Component.prototype.setState = function(partialState, callback) {
         'function which returns an object of state variables.',
     );
   }
-
+  // setState 队列
+  /**
+   * this 代表组件对象
+   * partialState 代表的要修改的部分state
+   * callback 回调函数
+   * 最后是名称
+   */
   this.updater.enqueueSetState(this, partialState, callback, 'setState');
 };
 
@@ -91,6 +97,7 @@ Component.prototype.forceUpdate = function(callback) {
  * we would like to deprecate them, we're not going to move them over to this
  * modern base class. Instead, we define a getter that warns if it's accessed.
  */
+console.log(__DEV__,'__DEV__');
 if (__DEV__) {
   const deprecatedAPIs = {
     isMounted: [

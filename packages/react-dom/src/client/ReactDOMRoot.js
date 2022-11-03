@@ -182,15 +182,17 @@ export function createRoot(
   if (!isValidContainer(container)) {
     throw new Error('createRoot(...): Target container is not a DOM element.');
   }
-
-  warnIfReactDOMContainerInDEV(container);
+  // console.log(container,options,'params');
+  // 对开发环境下，某一节点容器根节点的某些警告
+  // 不重要
+  // warnIfReactDOMContainerInDEV(container);
 
   let isStrictMode = false;
   let concurrentUpdatesByDefaultOverride = false;
   let identifierPrefix = '';
   let onRecoverableError = defaultOnRecoverableError;
   let transitionCallbacks = null;
-
+  // 参数的验证
   if (options !== null && options !== undefined) {
     if (__DEV__) {
       if ((options: any).hydrate) {
@@ -232,7 +234,7 @@ export function createRoot(
       transitionCallbacks = options.unstable_transitionCallbacks;
     }
   }
-
+  // 创建根fiber
   const root = createContainer(
     container,
     ConcurrentRoot,
@@ -243,7 +245,11 @@ export function createRoot(
     onRecoverableError,
     transitionCallbacks,
   );
+  console.log(root,'未标记');
+  //往dom节点添加fiber
+  // 为什么要添加？？？？？   原因未知
   markContainerAsRoot(root.current, container);
+  console.log(root,'已标记');
 
   if (enableFloat) {
     // Set the default dispatcher to the client dispatcher
@@ -278,7 +284,8 @@ export function hydrateRoot(
   if (!isValidContainer(container)) {
     throw new Error('hydrateRoot(...): Target container is not a DOM element.');
   }
-
+  // 对开发环境下，某一节点容器根节点的某些警告
+  // 不重要
   warnIfReactDOMContainerInDEV(container);
 
   if (__DEV__) {

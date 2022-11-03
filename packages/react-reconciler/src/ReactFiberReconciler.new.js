@@ -246,13 +246,13 @@ function findHostInstanceWithWarning(
 }
 
 export function createContainer(
-  containerInfo: Container,
-  tag: RootTag,
+  containerInfo: Container,// 容器 dom
+  tag: RootTag,// 标记   1
   hydrationCallbacks: null | SuspenseHydrationCallbacks,
-  isStrictMode: boolean,
-  concurrentUpdatesByDefaultOverride: null | boolean,
-  identifierPrefix: string,
-  onRecoverableError: (error: mixed) => void,
+  isStrictMode: boolean, // 是否是严格模式
+  concurrentUpdatesByDefaultOverride: null | boolean, // 是否要更新默认
+  identifierPrefix: string,// 标识前缀
+  onRecoverableError: (error: mixed) => void,// 监听是否是可重复的错误
   transitionCallbacks: null | TransitionTracingCallbacks,
 ): OpaqueRoot {
   const hydrate = false;

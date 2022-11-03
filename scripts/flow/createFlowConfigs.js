@@ -18,7 +18,7 @@ const configTemplate = fs
   .readFileSync(__dirname + '/config/flowconfig')
   .toString();
 
-function writeConfig(renderer, rendererInfo, isServerSupported) {
+function writeConfig(renderer:any, rendererInfo: any, isServerSupported:any) {
   const folder = __dirname + '/' + renderer;
   mkdirp.sync(folder);
 
